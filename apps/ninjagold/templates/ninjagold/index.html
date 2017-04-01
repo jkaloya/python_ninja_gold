@@ -1,0 +1,57 @@
+<DOCTYPE! html>
+<html>
+    <head>
+       <title>Ninja Gold</title>
+    </head>
+    <body>
+        <h4>Your gold:{{request.session.gold}}</h4>
+        <div id="Farm">
+        <h4>Farm</h4>
+        <p>(earns 10-20 golds)</p>
+
+        <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="farm" />
+            <input type="submit" value="Find Gold!"/>
+        </form>
+        </div>
+
+        <div id="Cave">
+        <h4>Cave</h4>
+        <p>(earns 5-10 golds)</p>
+        <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="cave" />
+            <input type="submit" value="Find Gold!"/>
+        </form>
+        </div>
+
+        <div id="House">
+        <h4>House</h4>
+        <p>(earns 2-5 golds)</p>
+        <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="house" />
+            <input type="submit" value="Find Gold!"/>
+        </form>
+        </div>
+
+        <div id="Casino">
+        <h4>Casino</h4>
+        <p>(earns/takes 0-50 golds)</p>
+        <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="casino" />
+            <input type="submit" value="Find Gold!"/>
+        </form>
+        </div>
+        <div id="acitvities">
+        <h4>Activites:</h4>
+            {{request.session.activitylog | safe}}
+        </div>
+        <form action='/reset' method='POST'>
+        {% csrf_token %}
+        <input type='submit' value='Reset!'>
+        </form>
+    </body>
+</html>
